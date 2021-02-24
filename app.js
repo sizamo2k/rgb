@@ -1,19 +1,32 @@
+// gives the number of squares to pick from
 var numSquares = 6;
+// sets the variable for when a color is picked 
 var colors = [];
+// sets the variable for the picked color once its clicked 
 var pickedColor;
+//Returns all element descendants of node that match selectors
 var squares = document.querySelectorAll(".square");
+//Returns a reference to the first object with the specified value of the ID or NAME attribute.
 var colorDisplay = document.getElementById("colorDisplay");
+//Returns the first element that is a descendant of node that matches selectors.
 var messageDisplay = document.querySelector("#message");
+//Returns the first element that is a descendant of node that matches selectors.
 var h1 = document.querySelector("h1");
+//Returns the first element that is a descendant of node that matches selectors.
 var resetButton = document.querySelector("#reset");
+//Returns all element descendants of node that match selectors.
 var modeButtons = document.querySelectorAll(".mode");
+// base score 
 var score = 0; 
+//Returns the first element that is a descendant of node that matches selectors.
 var scoreDisplay = document.querySelector("#scoreDisplay"); 
+// variable to reset for a new game 
 var resetPressed = true; 
 
 
 init();
 
+//initiates the sending of picking the colors in what ever square is chosen to get the scroe 
 function init(){
 	setupModeButtons();
 	setupSquares();
@@ -28,6 +41,7 @@ function init(){
 	reset();
 }
 
+//the function for wasy mode
 function setupModeButtons(){
 	for(var i = 0; i < modeButtons.length; i++){
 		modeButtons[i].addEventListener("click", function(){
@@ -40,6 +54,7 @@ function setupModeButtons(){
 	}
 }
 
+// the funtion that sets up the squares and what gets done in them- clicking, colors picked etc. 
 function setupSquares(){
 	for(var i = 0; i < squares.length; i++){
 	//add click listeners to squares
@@ -71,7 +86,7 @@ function setupSquares(){
 	}
 }
 
-
+//function so that the name of the color gets updated when chosen correctly 
 async function updateColorName(){
 	const regex = /\([^\)]+\)/g; 
 	var rgbColors = pickedColor.match(regex); 
@@ -91,7 +106,7 @@ async function updateColorName(){
 		colorDisplay.textContent = colorData.name.value + "-ish"; 
 	}
 }
-
+//function to reset the game in order to play again 
 function reset(){
 	resetPressed = true;
 	colors = generateRandomColors(numSquares);
@@ -141,7 +156,7 @@ function generateRandomColors(num){
 	//return that array
 	return arr;
 }
-
+//function so that a new random color to pick from gets made 
 function randomColor(){
 	//pick a "red" from 0 - 255
 	var r = Math.floor(Math.random() * 256);
